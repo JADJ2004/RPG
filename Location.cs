@@ -14,13 +14,13 @@ public class Location {
             if (locations.ToLower().Contains(destination_choice.ToLower())){
                 //area_level(destination_choice);
                 break;
+            }
             else if (destination_choice == "exit"){
                 break;
             }
             else{
                 Console.WriteLine("The location you picked is either off-limits or doesn't exist. Pick a new location.");
                 continue;
-            }
             }
         }
     }
