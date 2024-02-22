@@ -11,7 +11,7 @@ public class Location {
             }
 
             string destination_choice = Console.ReadLine();
-            if (locations.ToLower().Contains(destination_choice.ToLower())){
+            if (locations.Contains(destination_choice.ToLower())){
                 //area_level(destination_choice);
                 break;
             }
@@ -25,7 +25,7 @@ public class Location {
         }
     }
 
-    public static void area_level(area_choice){
+    public static void area_level(string area_choice){
         if (area_choice == ""){
             // Voeg hier de functie van dat locatie toe.
         }
