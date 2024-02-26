@@ -8,5 +8,6 @@ public class Player
     {
         TotalGold -= gold;
     }
-
 }
+// hier moet nog een player name field komen
+// hier moet ook de chapter komen

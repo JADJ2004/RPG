@@ -1,181 +1,184 @@
-using System;
-
-namespace Placeholder
+﻿class Program
 {
-    public class Program
+    static void Main(string[] args)
     {
-        private static GameSession _gameSession;
-        private static bool gameRunning = true;
+        Console.WriteLine("Welcome to Echoes of Freedom");
+        Player mai = new Player("Mai");
+        int currentChapter = 1;
+        bool gameOver = false;
 
-        public static void Main(string[] args)
+        while (!gameOver)
         {
-            _gameSession = new GameSession();
-
-            Console.WriteLine("Welcome to the game! Type 'quit' to exit.");
-
-            while (gameRunning)
+            Console.WriteLine("Mai has lived her entire life within the walls of this sanctum. A place ruled by strict rules and indoctrination, " +
+            "under the leadership of her parents. She has been taught that the outside world is dangerous and that their group " +
+            "offers protection and truth.\nFollowing the brutal assassination of her parents by the opposition (the group the parents said was dangerous), " +
+            "Mai experiences a crisis. Conflicted and seeking answers, she makes the decision to escape and find the opposition, " +
+            "so she can seek revenge.\n");
+            Console.WriteLine("Oh no it's a guard, i have to fight him");
+            while (Quest1 != "won");
             {
-                if (Console.KeyAvailable)
+                FightScene();
+                if (Quest1 == "won")
                 {
-                    string userInput = Console.ReadLine();
-
-                    if (string.Equals(userInput, "quit", StringComparison.OrdinalIgnoreCase))
-                    {
-                        gameRunning = false;
-                        continue;
-                    }
-
-                    ProcessInput(userInput);
+                    getGold();
+                    BuyWeapon();
+                    if (BuyWeapon == "yes")
+                        {
+                            RemoveGold();
+                            AddWeapon("fire blade");
+                        }
+                    Location.UnlockLocation("Unknown Territories");
+                    ShowLocationsStatus()
+                    break;
                 }
             }
-        }
-
-        private static void ProcessInput(string input)
-        {
-            switch (input.ToUpper())
+            Console.WriteLine("Chapter 2: Pursued by the Past\n" +
+            "As Mai ventures into the unknown, she is not alone. Members of her own community, loyal to the cause and her parents' legacy, pursue her relentlessly. " +
+            "Viewing her as a traitor for leaving, they are determined to bring her back by force. Mai must confront these enemies, " +
+            "using both her wit and combat skills learned within those walls. These battles test her resolve and force her to question the " +
+            "true nature of her enemies and allies alike.");
+            Console.WriteLine("use latest weapon y/n?");
+            inputUser = Console.ReadLine().ToLower();
+            if (inputUser == "y")
             {
-                case "N":
-                    _gameSession.MoveNorth();
-                    break;
-                case "S":
-                    _gameSession.MoveSouth();
-                    break;
-                case "E":
-                    _gameSession.MoveEast();
-                    break;
-                case "W":
-                    _gameSession.MoveWest();
-                    break;
-                case "A":
-                    _gameSession.Attack();
-                    break;
-                case "Q":
-                    _gameSession.ShowQuests();
-                    break;
-                case "I":
-                    _gameSession.ShowInventory();
-                    break;
-                case "QUIT":
-                    gameRunning = false;
-                    break;
-                default:
-                    Console.WriteLine("Invalid command. Please try again.");
-                    break;
+                criticalChane = 0.5;
             }
-
-            if (gameRunning)
+            while (Quest2 != "won");
             {
-                DisplayCurrentLocation();
-                DisplayAvailableCommands();
+                FightScene();
+                if (Quest2 == "won")
+                {
+                    getGold();
+                    BuyWeapon();
+                    if (BuyWeapon == "yes")
+                        {
+                            RemoveGold();
+                            AddWeapon("weapon 2");
+                        }
+                    Location.UnlockLocation("Opposition Camp");
+                    ShowLocationsStatus()
+                    break;
+                }
             }
-        }
-
-        private static void DisplayCurrentLocation()
-        {
-            Console.Clear();
-            Console.WriteLine($"You are at {_gameSession.CurrentLocation.Name}.");
-            Console.WriteLine(_gameSession.CurrentLocation.Description);
-
-            if (_gameSession.CurrentLocation.QuestAvailableHere != null)
+            Console.WriteLine("Chapter 3: The Other Side\n" +
+            "Venturing beyond the confines of the sanctum, Mai encounters the opposition, the very people blamed for her parents' " +
+            "death. Expecting hostility, she is taken aback by their warmth and the stark contrast between their ideals " +
+            "and what she has been led to believe.");
+            Console.WriteLine("Fight guard or snitch opposition fight/s");
+            answerInput = Console.ReadLine().ToLower();
+            if (answerInput == "fight" )
             {
-                Console.WriteLine($"Quest available: {_gameSession.CurrentLocation.QuestAvailableHere.Name}");
-            }
-
-            if (_gameSession.CurrentLocation.MonsterLivingHere != null)
-            {
-                Console.WriteLine($"WARNING: {_gameSession.CurrentLocation.MonsterLivingHere.Name} spotted!");
-            }
-        }
-
-        private static void DisplayAvailableCommands()
-        {
-            Console.WriteLine("Available commands:");
-            Console.WriteLine("'N' - Go North");
-            Console.WriteLine("'S' - Go South");
-            Console.WriteLine("'E' - Go East");
-            Console.WriteLine("'W' - Go West");
-            Console.WriteLine("'A' - Attack");
-            Console.WriteLine("'Q' - Quests");
-            Console.WriteLine("'I' - Inventory");
-            Console.WriteLine("'Quit' - Quit Game");
-            Console.Write("Enter command: ");
-        }
-    }
-
-    class GameSession
-    {
-        public Location CurrentLocation { get; private set; }
-
-        public GameSession()
-        {
-            CurrentLocation = World.LocationByID(World.LOCATION_ID_HOME); // de startlocatie
-        }
-
-        public void MoveNorth()
-        {
-            if (CurrentLocation.LocationToNorth != null)
-            {
-                CurrentLocation = CurrentLocation.LocationToNorth;
+                Console.WriteLine("use latest weapon y/n?");
+                inputUser = Console.ReadLine().ToLower();
+                if (inputUser == "y")
+                {
+                    criticalChane = 0.5;
+                }
+                while (Quest3 != "won");
+                {
+                    FightScene();
+                    if (Quest3 == "won")
+                    {
+                        getGold();
+                        BuyWeapon();
+                        if (BuyWeapon == "yes")
+                            {
+                                RemoveGold();
+                                AddWeapon("weapon 3");
+                            }
+                        Location.UnlockLocation("Forest");
+                        ShowLocationsStatus()
+                        addKarma();
+                        break;
+                    }
+                }
             }
             else
             {
-                Console.WriteLine("You cannot move north from here.");
-                Console.ReadKey();
+                Console.WriteLine("snitches opposition to the guards");
+                Location.UnlockLocation("Forest");
+                ShowLocationsStatus()
             }
-        }
-
-        public void MoveSouth()
-        {
-            if (CurrentLocation.LocationToSouth != null)
+            Console.WriteLine("Chapter 4: Revelations\n" +
+            "As Mai integrates with the opposition, she uncovers the truth: the world outside is not the dystopia painted by her " +
+            "parents. Instead, it is a place striving for freedom and individual thought, fighting against the oppressive control " +
+            "of the Sanctum.");
+            Console.WriteLine("Oh look this person needs some money\nHelp person y/n");
+            userInput = Console.ReadLine().ToLower();
+            if (userInput == "y")
+                {
+                    Console.WriteLine("Oh thank you very much Mai!");
+                    addKarma();
+                }
+            while (Quest4 != "won");
             {
-                CurrentLocation = CurrentLocation.LocationToSouth;
+                Console.WriteLine("use latest weapon y/n?");
+                inputUser = Console.ReadLine().ToLower();
+                if (inputUser == "y")
+                {
+                    criticalChane = 0.5;
+                }
+                FightScene();
+                if (Quest4 == "won")
+                {
+                    getGold();
+                    BuyWeapon();
+                    if (BuyWeapon == "yes")
+                        {
+                            RemoveGold();
+                            AddWeapon("weapon 4");
+                        }
+                    Location.UnlockLocation("Crossroads");
+                    ShowLocationsStatus()
+                    break;
+                }
+            }
+
+            Console.WriteLine("Chapter 5: The Choice\n" +
+            "Faced with the reality of her upbringing and the ideals of the opposition, Mai stands at a crossroads. " +
+            "Her decision to join this new group and fight for true freedom could lead to the salvation of many. Choosing the " +
+            "path of good and aligning with the opposition promises a brighter future. " +
+            "Alternatively, she could choose to return to the sanctum and betray the opposition (effectively betraying herself).");
+            while (Quest5 != "won");
+            {
+                Console.WriteLine("use latest weapon y/n?");
+                inputUser = Console.ReadLine().ToLower();
+                if (inputUser == "y")
+                {
+                    criticalChane = 0.5;
+                }
+                FightScene();
+                if (Quest5 == "won")
+                {
+                    Location.UnlockLocation("Crossroads");
+                    break;
+                }
+            }
+            if (Karma.KarmaPoints != 0)
+            {
+                Console.WriteLine("You made good choices! you are now officially the leader of the opposition");
+                // monologue for chapter 6
+                // Chapter 6: A Twist in Time (alleen als mai good karma heeft)
+                    // Embracing her role within the opposition, Mai discovers a shocking truth through a series of clues: in a 
+                    // bizarre twist of fate, she learns that she herself will become the leader of this group in the future, orchestrating 
+                    // the downfall of her own parents. This revelation highlights the cyclical nature of conflict and the complex moral 
+                    // landscape Mai must navigate. Her parents, despite their facade of benevolence, had committed atrocities that justified 
+                    // their overthrow. (dit is gewoon een dialogue alsof we nu in de toekomst zijn, een soort outro)
+                Location.UnlockLocation("Back to the Sanctum");
             }
             else
             {
-                Console.WriteLine("You cannot move south from here.");
-                Console.ReadKey();
+                Console.WriteLine("You have chosen the way of the sanctum, now you will kill the leader of the opposition");
+                // monologue for killing the leader of the opposition
+                Console.WriteLine("Why does she have the same eyes as me..?");
             }
-        }
 
-        public void MoveEast()
-        {
-            if (CurrentLocation.LocationToEast != null)
-            {
-                CurrentLocation = CurrentLocation.LocationToEast;
-            }
-            else
-            {
-                Console.WriteLine("You cannot move east from here.");
-                Console.ReadKey();
-            }
+            
+                    gameOver = true;
+                    break;    
         }
-
-        public void MoveWest()
-        {
-            if (CurrentLocation.LocationToWest != null)
-            {
-                CurrentLocation = CurrentLocation.LocationToWest;
-            }
-            else
-            {
-                Console.WriteLine("You cannot move west from here.");
-                Console.ReadKey();
-            }
-        }
-
-        public void Attack()
-        {
-            // Hier attack code
-        }
-
-        public void ShowQuests()
-        {
-            // Hier quest code
-        }
-
-        public void ShowInventory()
-        {
-            // Hier inventory code
-        }
+        Console.WriteLine("Thank you for playing Echoes of Freedom.");
+        gameOver = true;
     }
 }
+

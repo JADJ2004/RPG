@@ -1,0 +1,84 @@
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Console.WriteLine("Welcome to Echoes of Freedom");
+
+        // Initial game setup
+        Player mai = new Player("Mai");
+        int currentChapter = 1;
+        bool gameOver = false;
+
+        while (!gameOver)
+        {
+            switch (currentChapter)
+            {
+                case 1:
+                    Chapter1(mai);
+                    // - Mai has lived her entire life within the walls of this sanctum. a place ruled by strict rules and indocrination,
+                    // under the leadership of her parents. She has been taught that the outside world is dangerous and that their group
+                    // offers protection and truth.
+                    // Following the brutal assassination of her parents by the opposition (the group the parents said was dangerous),
+                    // Mai experiences a crisis. Conflicted and seeking answers, she makes the decision to escape and find the opposition,
+                    // so she can seek revenge.
+                    // Location 1 = Home
+                    break;
+                case 2:
+                    Chapter2(mai);
+                    //chapter 2: Persued by the past
+                    //As Mai ventures into the unknown, she is not alone. Members of her own community, loyal to the cause and her parents' legacy, pursue her relentlessly. 
+                    //Viewing her as a traitor for leaving, they are determined to bring her back by force. Mai must confront these enemies, 
+                    //using both her wit and combat skills learned within those walls. These battles test her resolve and force her to question the 
+                    //true nature of her enemies and allies alike. 
+                    // location 2 = town square
+                    // vecht tegen monster 1 = guard disguised as rat
+                    // combat system if won: gets gold (buy weapon y/n) -> if buy weapon, remove gold and add to inventory
+                    break;
+                case 3:
+                    Chapter3(mai);
+                    //chapter 3: The other side
+                    //Venturing beyond the confines of the sanctum, Mai encounters the opposition, the very people blamed for her parents'
+                    //death. Expecting hostility, she is taken aback by their warmth and the stark contrast between their ideals 
+                    //and what she has been led to believe.
+                    // locatie 3 = Guard post
+                    // vecht tegen guard 
+                    break;
+                case 4:
+                    Chapter4(mai);
+                    // chapter 4: revelations
+                    // As Mai integrates with the opposition, she uncovers the truth: the world outside is not the dystopia painted by her
+                    // parents. Instead, it is a place striving for freedom and individual thought, fighting against the oppressive control 
+                    // of the Sanctum.
+                    //locatie 4 = farmers field
+                    // vecht tegen slang
+                    break;
+                case 5:
+                    Chapter5(mai);
+                    // Chapter 5: The Choice
+                    // Faced with the reality of her upbringing and the ideals of the opposition, Meid stands at a crossroads. 
+                    // Her decision to join this new group and fight for true freedom could lead to the salvation of many. Choosing the
+                    // path of good and aligning with the opposition promises a brighter future. (gevecht tegen enemy van de sanctum). 
+                    // Of ze kiest om terug te gaan naar de sanctum en verraadt de opositie. (vermoordt leider aka haarzelf)
+                    // locatie 5 = spider field
+                    // vecht tegen giant spider
+                    // kijk naar karma punten en bepaal einde
+                    break;
+                case 6:
+                    Chapter6(mai);
+                    // Chapter 6: A Twist in Time (alleen als mai good karma heeft)
+                    // Embracing her role within the opposition, Mai discovers a shocking truth through a series of clues: in a 
+                    // bizarre twist of fate, she learns that she herself will become the leader of this group in the future, orchestrating 
+                    // the downfall of her own parents. This revelation highlights the cyclical nature of conflict and the complex moral 
+                    // landscape Mai must navigate. Her parents, despite their facade of benevolence, had committed atrocities that justified 
+                    // their overthrow. (dit is gewoon een dialogue alsof we nu in de toekomst zijn, een soort outro)
+                    gameOver = true; // Ends the game after the twist in time chapter
+                    break;
+            }
+
+            currentChapter++;
+        }
+
+        Console.WriteLine("Thank you for playing Echoes of Freedom.");
+    }
+}
