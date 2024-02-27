@@ -4,6 +4,7 @@ public class Player
     public int Health = 100;
     public string Name { get; set; } // Player name field
     public int CurrentChapter { get; set; } // Player current chapter
+    public Weapon CurrentWeapon { get; set; } // Determines the current weapon of the Player
 
     public Player(string name)
     {
@@ -11,6 +12,10 @@ public class Player
         CurrentChapter = 1; // Starting from chapter 1
     }
 
+    public void EquipWeapon(Weapon weapon)
+    {
+        CurrentWeapon = weapon;
+    }
     public void AddGold(int gold)
     {
         TotalGold += gold;
