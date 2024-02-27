@@ -1,10 +1,21 @@
 public class Player 
-{   public int TotalGold = 0;
+{
+    public int TotalGold = 0;
     public int Health = 100;
+    public string Name { get; set; } // Player name field
+    public int CurrentChapter { get; set; } // Player current chapter
+
+    public Player(string name)
+    {
+        Name = name;
+        CurrentChapter = 1; // Starting from chapter 1
+    }
+
     public void AddGold(int gold)
     {
         TotalGold += gold;
     }
+
     public void RemoveGold(int gold)
     {
         TotalGold -= gold;
@@ -12,19 +23,11 @@ public class Player
 
     public void IncreaseHealth(int health)
     {
-        if (Health != 100)
-        {
-            Health += health;
-        }
-    }
-    public void DecreaseHealth(int health)
-    {
-        if (Health != 0)
-        {
-            Health -= health;
-        }
+        Health = Math.Min(100, Health + health);
     }
 
+    public void DecreaseHealth(int health)
+    {
+        Health = Math.Max(0, Health - health);
+    }
 }
-// hier moet nog een player name field komen
-// hier moet ook de chapter komen
