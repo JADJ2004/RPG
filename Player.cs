@@ -15,6 +15,7 @@ public class Player
     public void EquipWeapon(Weapon weapon)
     {
         CurrentWeapon = weapon;
+        Console.WriteLine($"Equipped weapon: {weapon}");
     }
     public void AddGold(int gold)
     {
