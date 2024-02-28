@@ -12,13 +12,14 @@ public class CombatSystem
     {
         Console.WriteLine("Combat has started!");
         Console.WriteLine($"Enemy: {monster.Name}");
+        int CPleft = 3;
         Random random = new Random();
         while (player.Health > 0 && monster.Health > 0)
         {
             Console.WriteLine("Choose an action:");
             Console.WriteLine("1: Attack");
             Console.WriteLine("2: Heal");
-            Console.WriteLine("3: Throw Potion");
+            Console.WriteLine("3: Throw a Fire-Cracked Pot");
             string action = Console.ReadLine();
             switch (action)
             {
@@ -27,6 +28,11 @@ public class CombatSystem
                     break;
                 case "2": // Heal
                     PerformHeal();
+                    break;
+                case "3": // Throw Cracked Pot
+                    ThrowCrackedPot();
+                    CPleft -= 1;
+                    Console.WriteLine($"Cracked Pots left: {CPleft}");
                     break;
                 default:
                     Console.WriteLine("Invalid choice, please choose again.");
@@ -80,6 +86,25 @@ public class CombatSystem
         if (player.Health <= 0)
         {
             Console.WriteLine("Player defeated!");
+        }
+    }
+    private void ThrowCrackedPot()
+    {
+        Console.WriteLine($"{player.Name} throws a blazing pot of fire!")
+        int FinalCrackedPotDamage = 35;
+        Random randomSecond = new Random();
+        if (randomSecond.NextDouble() < 0.33)
+        {
+            Console.WriteLine("It's a critical hit!");
+            FinalCrackedPotDamage *= 2;
+        }
+        monster.GetAttacked(FinalCrackedPotDamage);
+        Console.WriteLine($"{monster.Name} has {monster.Health} health left.");
+        if (monster.Health <= 0)
+        {
+            Console.WriteLine($"{monster.Name} defeated!");
+            player.AddGold(monster.Reward);
+            Console.WriteLine($"Player received {monster.Reward} gold. Total gold: {player.TotalGold}");
         }
     }
 }
