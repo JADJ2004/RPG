@@ -18,6 +18,7 @@ public class CombatSystem
             Console.WriteLine("Choose an action:");
             Console.WriteLine("1: Attack");
             Console.WriteLine("2: Heal");
+            Console.WriteLine("3: Throw Potion");
             string action = Console.ReadLine();
             switch (action)
             {
