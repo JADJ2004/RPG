@@ -90,7 +90,7 @@ public class CombatSystem
     }
     private void ThrowCrackedPot()
     {
-        Console.WriteLine($"{player.Name} throws a blazing pot of fire!")
+        Console.WriteLine($"{player.Name} throws a blazing pot of fire!");
         int FinalCrackedPotDamage = 35;
         Random randomSecond = new Random();
         if (randomSecond.NextDouble() < 0.33)
